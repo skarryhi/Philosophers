@@ -6,16 +6,18 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 17:48:39 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/15 19:39:32 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/15 20:16:11 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <stdlib.h>
 
 # define WHITE	"\x1B[0m"
 # define RED	"\x1B[31m"
@@ -42,8 +44,9 @@ typedef	struct			s_philo
 	int					id;
 	int					birth;
 	int					last_meal;
+	int					count_eat;
 	int					die;
-	t_table				table;
+	t_table				*table;
 }						t_philo;
 
 int		put_table(t_table *table, int ac, char **av);

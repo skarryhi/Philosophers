@@ -1,8 +1,8 @@
-NAME = philo
+NAME = philo_one
 HEADER = philo.h
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = philo_one.c init.c
+SRC = philo_one.c init_table.c init_philo.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
