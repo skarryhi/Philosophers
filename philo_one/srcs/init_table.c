@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/15 19:41:25 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 12:01:56 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ int		my_atoi(const char *str)
 	return (res);
 }
 
+void	init_forks(t_table *table)
+{
+	pthread_mutex_t	fork[table->philo];
+	int				i;
+
+	i = 0;
+	while (i < table->philo)
+	{
+		pthread_mutex_init(&fork[i], NULL);
+		i++;
+	}
+	table->mutx_fork = fork;
+}
+
 int		init_table(t_table *table, int ac, char **av)
 {
 	table->philo = my_atoi(av[1]);
@@ -66,6 +80,10 @@ int		init_table(t_table *table, int ac, char **av)
 		table->t2eat == -1 || table->t2sleep == -1)
 		return (1);
 	table->die = 0;
+	pthread_mutex_init(&table->mutx_time, NULL);
+	pthread_mutex_init(&table->mutx_die, NULL);
+	pthread_mutex_init(&table->mutx_print, NULL);
+	init_forks(table);
 	return(0);
 }
 

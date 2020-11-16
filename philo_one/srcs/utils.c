@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 19:42:41 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/15 20:16:15 by skarry           ###   ########.fr       */
+/*   Created: 2020/11/16 12:03:36 by skarry            #+#    #+#             */
+/*   Updated: 2020/11/16 12:07:15 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void		init_one_philo(t_philo *philo, t_table *table, int nmb)
+int			get_time(void)
 {
-	philo->id = nmb;
-	philo->table = table;
-	philo->count_eat = table->count_eat;
-}
+	struct timeval	current;
 
-void		init_philo(t_table table)
-{
-	t_philo		philo[table.philo];
-	int			i;
-
-	i = -1;
-	while (++i < table.philo)
-	{
-		init_one_philo(&philo[i], &table, i);
-		pthread_create(&threads[i], NULL, simulation, &philos[i]);
-	}
+	gettimeofday(&current, NULL);
+	return ((int)(((current.tv_sec) * 1000) + ((current.tv_usec) / 1000)));
 }

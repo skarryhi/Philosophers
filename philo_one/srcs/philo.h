@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 17:48:39 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/15 20:16:11 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 12:09:51 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef	struct			s_table
 	int					t2sleep;
 	int					count_eat;
 	int					die;
+	pthread_mutex_t		mutx_die;
+	pthread_mutex_t		mutx_print;
+	pthread_mutex_t		mutx_time;
+	pthread_mutex_t		*mutx_fork;
 }						t_table;
 
 typedef	struct			s_philo
@@ -49,7 +53,10 @@ typedef	struct			s_philo
 	t_table				*table;
 }						t_philo;
 
-int		put_table(t_table *table, int ac, char **av);
-void	ft_putstr(char *s);
+int			put_table(t_table *table, int ac, char **av);
+void		ft_putstr(char *s);
+void		simulation(t_philo *philo);
+void		init_philo(t_table table);
+int			get_time(void);
 
 #endif

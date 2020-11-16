@@ -2,7 +2,8 @@ NAME = philo_one
 HEADER = philo.h
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = philo_one.c init_table.c init_philo.c
+SRC = ./srcs/philo_one.c ./srcs/init_table.c ./srcs/init_philo.c\
+		 ./srcs/utils.c #./srcs/simulation.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 

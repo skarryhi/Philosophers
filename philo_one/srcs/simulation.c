@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.c                                        :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 17:47:07 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/15 19:43:08 by skarry           ###   ########.fr       */
+/*   Created: 2020/11/16 11:39:49 by skarry            #+#    #+#             */
+/*   Updated: 2020/11/16 12:07:14 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		main(int argc, char **argv)
+void		simulation(t_philo *philo)
 {
-	t_table		table;
-
-	if (put_table(&table, argc, argv))
-		return (1);
-	init_philo();
-	return (0);
+	
 }
