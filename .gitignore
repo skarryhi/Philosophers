@@ -1,3 +1,6 @@
-*/*.o
-*/philo
+*/*/*.o
+*/philo_one
 .dist
+*/cmake-build-debug
+*/.idea
+*/CMakeLists.txt
