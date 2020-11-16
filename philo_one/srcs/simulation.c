@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:39:49 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 18:43:56 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 18:55:42 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		main_loop(t_philo *philo)
 											% philo->table->philo]);
 	else
 		pthread_mutex_lock(&philo->table->mutx_fork[philo->id]);
+	ft_print((t_philo *)philo, BOLD""GRN"has taken a fork"WHITE);
 	ft_print((t_philo *)philo, BOLD""CYN"is eating"WHITE);
 	philo->last_meal = get_time();
 	ft_wait(philo->table->t2eat);
