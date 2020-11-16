@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 19:58:49 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:08:50 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int		my_atoi(const char *str)
 		return (-1);
 	return (res);
 }
-
 
 void	init_sem(t_table *table)
 {

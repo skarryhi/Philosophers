@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:03:36 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 19:41:49 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:08:24 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ char		*ft_itoa(int n)
 		str[1] = '\0';
 		return (str);
 	}
-	while (n != 0)
-	{
-		len++;
+	while (n != 0 && ++len)
 		n /= 10;
-	}
 	if (!((str = (char*)malloc(sizeof(char) * (len + 1)))))
 		return (0);
 	str[len--] = '\0';
