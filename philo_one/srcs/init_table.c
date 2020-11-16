@@ -6,23 +6,11 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 12:01:56 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 15:12:38 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_putstr(char *s)
-{
-	int		i;
-
-	if (s)
-	{
-		i = 0;
-		while (s[i])
-			write(1, &s[i++], 1);
-	}
-}
 
 int		my_atoi(const char *str)
 {
@@ -50,16 +38,12 @@ int		my_atoi(const char *str)
 
 void	init_forks(t_table *table)
 {
-	pthread_mutex_t	fork[table->philo];
-	int				i;
+	int		i;
 
 	i = 0;
+	table->mutx_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->philo);
 	while (i < table->philo)
-	{
-		pthread_mutex_init(&fork[i], NULL);
-		i++;
-	}
-	table->mutx_fork = fork;
+		pthread_mutex_init(&table->mutx_fork[i++], NULL);
 }
 
 int		init_table(t_table *table, int ac, char **av)
@@ -80,6 +64,7 @@ int		init_table(t_table *table, int ac, char **av)
 		table->t2eat == -1 || table->t2sleep == -1)
 		return (1);
 	table->die = 0;
+	table->print_die = 0;
 	pthread_mutex_init(&table->mutx_time, NULL);
 	pthread_mutex_init(&table->mutx_die, NULL);
 	pthread_mutex_init(&table->mutx_print, NULL);

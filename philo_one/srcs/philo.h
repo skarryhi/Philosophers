@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 17:48:39 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 12:09:51 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 15:12:14 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef	struct			s_table
 	int					t2sleep;
 	int					count_eat;
 	int					die;
+	int					print_die;
 	pthread_mutex_t		mutx_die;
 	pthread_mutex_t		mutx_print;
 	pthread_mutex_t		mutx_time;
@@ -49,14 +50,16 @@ typedef	struct			s_philo
 	int					birth;
 	int					last_meal;
 	int					count_eat;
-	int					die;
 	t_table				*table;
 }						t_philo;
 
 int			put_table(t_table *table, int ac, char **av);
 void		ft_putstr(char *s);
-void		simulation(t_philo *philo);
-void		init_philo(t_table table);
+void		*simulation(void *philo);
+void		init_philo(t_table *table);
 int			get_time(void);
+void		ft_putstr(char *s);
+void		ft_print(t_philo *philo, char *str);
+void		ft_wait(int time);
 
 #endif
