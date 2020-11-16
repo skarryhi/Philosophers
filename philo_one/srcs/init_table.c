@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 15:12:38 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 18:37:50 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	init_forks(t_table *table)
 	int		i;
 
 	i = 0;
-	table->mutx_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->philo);
+	if (!(table->mutx_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+		* table->philo)))
+		return ;
 	while (i < table->philo)
 		pthread_mutex_init(&table->mutx_fork[i++], NULL);
 }
@@ -69,7 +71,7 @@ int		init_table(t_table *table, int ac, char **av)
 	pthread_mutex_init(&table->mutx_die, NULL);
 	pthread_mutex_init(&table->mutx_print, NULL);
 	init_forks(table);
-	return(0);
+	return (0);
 }
 
 int		put_table(t_table *table, int ac, char **av)
@@ -78,13 +80,13 @@ int		put_table(t_table *table, int ac, char **av)
 	{
 		ft_putstr(BOLD);
 		ft_putstr("Wrong number of arguments\n");
-		return(1);
+		return (1);
 	}
 	if (init_table(table, ac, av))
 	{
 		ft_putstr(BOLD);
 		ft_putstr("Invalid arguments\n");
-		return(1);
+		return (1);
 	}
 	av += 0;
 	table += 0;

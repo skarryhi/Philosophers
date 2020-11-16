@@ -6,81 +6,96 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:03:36 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 16:37:44 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 18:48:26 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int			get_time(void)
+size_t		ft_strlen(const char *str)
 {
-	struct timeval	current;
+	size_t c;
 
-	gettimeofday(&current, NULL);
-	return ((int)(((current.tv_sec) * 1000) + ((current.tv_usec) / 1000)));
+	c = 0;
+	if (str)
+		while (str[c])
+			c++;
+	return (c);
 }
 
-void		ft_wait(int time)
+void		ft_putstr(char *s)
 {
-	int				start;
-	int				stop;
-	int				diff;
-
-	start = get_time();
-	stop = get_time();
-	diff = stop - start;
-	while (diff < time)
-	{
-		stop = get_time();
-		diff = stop - start;
-		usleep(10);
-	}
-}
-
-void	ft_putstr(char *s)
-{
-	int		i;
-
 	if (s)
-	{
-		i = 0;								
-		while (s[i])
-			write(1, &s[i++], 1);
-	}
+		write(1, s, ft_strlen(s));
 }
-void	ft_putchar(char c)
+
+char		*ft_itoa(int n)
 {
-	write(1, &c, 1);
-}
+	char	*str;
+	int		ren;
+	int		len;
 
-
-void	ft_putnbr(int n)
-{
-	if (n >= 10)
+	len = 0;
+	ren = n;
+	if (n == 0)
 	{
-		ft_putnbr(n / 10);
-		ft_putchar((n % 10) + '0');
+		str = (char*)malloc(2);
+		str[0] = '0';
+		str[1] = '\0';
+		return (str);
 	}
-	else
-		ft_putchar(n + '0');
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
+	}
+	if (!((str = (char*)malloc(sizeof(char) * (len + 1)))))
+		return (0);
+	str[len--] = '\0';
+	while (ren != 0)
+	{
+		str[len--] = ren % 10 + '0';
+		ren /= 10;
+	}
+	return (str);
 }
 
+void		str_constr(t_philo *philo, char *str)
+{
+	char	res[100];
+	char	*s1;
+	char	*s2;
+	int		i;
+	int		i2;
+
+	s1 = ft_itoa(get_time() - philo->birth);
+	s2 = ft_itoa(philo->id + 1);
+	i = -1;
+	while (s1[++i])
+		res[i] = s1[i];
+	res[i++] = ' ';
+	free(s1);
+	i2 = -1;
+	while (s2[++i2])
+		res[i++] = s2[i2];
+	res[i++] = ' ';
+	free(s2);
+	i2 = -1;
+	while (str[++i2])
+		res[i++] = str[i2];
+	res[i++] = '\n';
+	res[i] = '\0';
+	ft_putstr(res);
+}
 
 void		ft_print(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(&philo->table->mutx_print);
-	if (philo->table->die == 1 && philo->table->print_die == 1)
+	if (philo->table->die && philo->table->print_die)
 	{
 		pthread_mutex_unlock(&philo->table->mutx_print);
 		return ;
 	}
-	if (philo->table->die == 1 && philo->table->print_die == 0)
-		++philo->table->print_die;
-	ft_putnbr(get_time() - philo->birth);
-	ft_putchar(' ');
-	ft_putnbr(philo->id + 1);
-	ft_putchar(' ');
-	ft_putstr(str);
-	ft_putchar('\n');
+	str_constr(philo, str);
 	pthread_mutex_unlock(&philo->table->mutx_print);
 }

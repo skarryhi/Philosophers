@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 17:48:39 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 15:12:14 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 18:31:09 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,37 @@
 # define WHT	"\x1B[37m"
 # define BOLD	"\033[1m"
 
-typedef	struct			s_table
+typedef	struct		s_table
 {
-	int					philo;
-	int					t2die;
-	int					t2eat;
-	int					t2sleep;
-	int					count_eat;
-	int					die;
-	int					print_die;
-	pthread_mutex_t		mutx_die;
-	pthread_mutex_t		mutx_print;
-	pthread_mutex_t		mutx_time;
-	pthread_mutex_t		*mutx_fork;
-}						t_table;
+	int				philo;
+	int				t2die;
+	int				t2eat;
+	int				t2sleep;
+	int				count_eat;
+	int				die;
+	int				print_die;
+	pthread_mutex_t	mutx_die;
+	pthread_mutex_t	mutx_print;
+	pthread_mutex_t	mutx_time;
+	pthread_mutex_t	*mutx_fork;
+}					t_table;
 
-typedef	struct			s_philo
+typedef	struct		s_philo
 {
-	int					id;
-	int					birth;
-	int					last_meal;
-	int					count_eat;
-	t_table				*table;
-}						t_philo;
+	int				id;
+	int				birth;
+	int				last_meal;
+	int				count_eat;
+	t_table			*table;
+}					t_philo;
 
-int			put_table(t_table *table, int ac, char **av);
-void		ft_putstr(char *s);
-void		*simulation(void *philo);
-void		init_philo(t_table *table);
-int			get_time(void);
-void		ft_putstr(char *s);
-void		ft_print(t_philo *philo, char *str);
-void		ft_wait(int time);
+int					put_table(t_table *table, int ac, char **av);
+void				ft_putstr(char *s);
+void				*simulation(void *philo);
+void				init_philo(t_table *table);
+int					get_time(void);
+void				ft_putstr(char *s);
+void				ft_print(t_philo *philo, char *str);
+void				ft_wait(int time);
 
 #endif
