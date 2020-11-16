@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 18:37:50 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/16 19:37:32 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,5 @@ int		put_table(t_table *table, int ac, char **av)
 		ft_putstr("Invalid arguments\n");
 		return (1);
 	}
-	av += 0;
-	table += 0;
 	return (0);
 }
