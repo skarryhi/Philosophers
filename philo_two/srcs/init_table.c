@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:01:42 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/16 20:08:50 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/17 14:17:21 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		my_atoi(const char *str)
 		res = res * 10 + (*str - '0');
 		str++;
 	}
+	if (*str)
+		return (-1);
 	if (res < 1)
 		return (-1);
 	return (res);
