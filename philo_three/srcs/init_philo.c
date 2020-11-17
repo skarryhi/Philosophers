@@ -6,7 +6,7 @@
 /*   By: skarry <skarry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 19:42:41 by skarry            #+#    #+#             */
-/*   Updated: 2020/11/17 13:55:31 by skarry           ###   ########.fr       */
+/*   Updated: 2020/11/17 14:23:36 by skarry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		sem_closes(t_table *table)
 void		init_philo(t_table *table)
 {
 	t_philo		philo[table->philo];
-	pid_t		pid[table->philo];
+	pid_t		pid[table->philo + 1];
 	int			i;
 
 	i = -1;
